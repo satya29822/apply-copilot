@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apply Copilot</title>
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <h1>Apply Copilot</h1>
+      <p class="strap">Reads the posting. Fills the form. You press Submit.</p>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab is-current" data-view="match" role="tab">Match</button>
+      <button class="tab" data-view="tracker" role="tab">Tracker <span class="count" id="trackerCount">0</span></button>
+      <button class="tab" data-view="profile" role="tab">Profile</button>
+    </nav>
+
+    <main>
+      <!-- MATCH -->
+      <section class="view is-current" id="view-match">
+        <button class="primary" id="readBtn">Read this posting</button>
+        <p class="hint" id="matchHint">Open a job posting in the tab, then read it.</p>
+
+        <div class="result" id="matchResult" hidden>
+          <div class="jobline">
+            <strong id="jobTitle"></strong>
+            <span id="jobCompany"></span>
+          </div>
+
+          <div class="score">
+            <div class="swipe"><span class="swipe__mark" id="scoreMark"></span><span class="swipe__num" id="scoreNum">0</span></div>
+            <div class="score__meta">
+              <span class="verdict" id="verdict"></span>
+              <span class="sub" id="askedCount"></span>
+            </div>
+          </div>
+
+          <p class="years" id="yearsNote" hidden></p>
+
+          <div class="chips" id="matchedChips"></div>
+          <div class="chips" id="coveredChips"></div>
+          <div class="chips" id="missingChips"></div>
+
+          <div class="actions">
+            <button class="primary" id="fillBtn">Fill the form</button>
+            <button class="ghost" id="saveBtn">Save to tracker</button>
+          </div>
+          <p class="hint" id="fillReport"></p>
+        </div>
+      </section>
+
+      <!-- TRACKER -->
+      <section class="view" id="view-tracker">
+        <div class="toolbar">
+          <button class="ghost" id="exportBtn">Export CSV</button>
+          <button class="ghost danger" id="clearBtn">Clear all</button>
+        </div>
+        <ul class="list" id="trackerList"></ul>
+        <p class="empty" id="trackerEmpty">Nothing tracked yet. Read a posting and save it.</p>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="view" id="view-profile">
+        <p class="hint">Used to fill forms and to score postings. Stored on this device only.</p>
+        <form id="profileForm" autocomplete="off">
+          <div class="row2">
+            <label>First name<input name="firstName" /></label>
+            <label>Last name<input name="lastName" /></label>
+          </div>
+          <label>Full name<input name="fullName" /></label>
+          <div class="row2">
+            <label>Email<input name="email" type="email" /></label>
+            <label>Phone<input name="phone" /></label>
+          </div>
+          <label>Location<input name="location" /></label>
+          <label>LinkedIn<input name="linkedin" /></label>
+          <div class="row2">
+            <label>GitHub<input name="github" /></label>
+            <label>Portfolio<input name="portfolio" /></label>
+          </div>
+          <div class="row2">
+            <label>Current company<input name="currentCompany" /></label>
+            <label>Current title<input name="currentTitle" /></label>
+          </div>
+          <div class="row3">
+            <label>Years<input name="totalExperience" inputmode="decimal" /></label>
+            <label>Notice<input name="noticePeriod" /></label>
+            <label>Expected CTC<input name="expectedCtc" /></label>
+          </div>
+          <label>Current CTC<input name="currentCtc" /></label>
+          <label>Work authorization<input name="workAuth" /></label>
+          <label>Skills <span class="lab-note">comma separated &mdash; drives the match score</span>
+            <textarea name="skillsRaw" rows="4"></textarea>
+          </label>
+          <label>Cover letter / "why this role" default
+            <textarea name="coverLetter" rows="5"></textarea>
+          </label>
+          <button class="primary" id="saveProfile" type="submit">Save profile</button>
+          <span class="saved" id="savedFlag" hidden>Saved</span>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="panel.js"></script>
+  </body>
+</html>
